@@ -14,28 +14,31 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Navigating to the project directory
-        run: cd codebase/rdicidr-0.1.0
-
       - name: Install dependencies
+        working-directory: ./codebase/rdicidr-0.1.0
         run: npm install
 
       - name: Linter (ESLint Fixes)
+        working-directory: ./codebase/rdicidr-0.1.0
         run: npm run lint:fix
 
       - name: Linter (ESLint)
         run: npm run lint
 
       - name: Formatter (Prettier Write)
+        working-directory: ./codebase/rdicidr-0.1.0
         run: npm run prettier:write
 
       - name: Formatter (Prettier)
+        working-directory: ./codebase/rdicidr-0.1.0
         run: npm run prettier
 
       - name: Test (Jest)
         env:
           CI: true
+        working-directory: ./codebase/rdicidr-0.1.0
         run: npm run test
 
       - name: Build
+        working-directory: ./codebase/rdicidr-0.1.0
         run: npm run build
