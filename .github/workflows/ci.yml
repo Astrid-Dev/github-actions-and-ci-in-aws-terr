@@ -4,7 +4,7 @@ name: CI
 on:
   pull_request:
     branches:
-      - '*'
+      - '*''
 
 jobs:
   build:
@@ -14,28 +14,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Navigating to the project directory
-        uses: cd codebase/rdicidr-0.1.0
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 15
 
       - name: Install dependencies
+        working-directory: ./codebase/rdicidr-0.1.0
         run: npm install
 
-      - name: Linter (ESLint Fixes)
-        run: npm run lint:fix
-
       - name: Linter (ESLint)
+        working-directory: ./codebase/rdicidr-0.1.0
         run: npm run lint
 
-      - name: Formatter (Prettier Write)
-        run: npm run prettier:write
+      - name: Installing (Prettier)
+        working-directory: ./codebase/rdicidr-0.1.0
+        run: npm install -g prettier
 
       - name: Formatter (Prettier)
+        working-directory: ./codebase/rdicidr-0.1.0
         run: npm run prettier
 
       - name: Test (Jest)
         env:
           CI: true
+        working-directory: ./codebase/rdicidr-0.1.0
         run: npm run test
 
       - name: Build
+        working-directory: ./codebase/rdicidr-0.1.0
         run: npm run build
