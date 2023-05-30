@@ -23,16 +23,8 @@ jobs:
         working-directory: ./codebase/rdicidr-0.1.0
         run: npm install
 
-      - name: Linter (ESLint Fixes)
-        working-directory: ./codebase/rdicidr-0.1.0
-        run: npm run lint:fix
-
       - name: Linter (ESLint)
         run: npm run lint
-
-      - name: Formatter (Prettier Write)
-        working-directory: ./codebase/rdicidr-0.1.0
-        run: npm run prettier:write
 
       - name: Formatter (Prettier)
         working-directory: ./codebase/rdicidr-0.1.0
